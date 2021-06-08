@@ -1,0 +1,34 @@
+project:
+    name: Geo-Reporting-PMM
+    package:
+        name: Geo-Reporting-PMM
+        api_version: '51.0'
+    git:
+        default_branch: 'main'
+    source_format: sfdx
+
+sources:
+    pmm:
+        github: https://github.com/SalesforceFoundation/PMM
+
+flows:
+    dependencies:
+        steps:
+            3:
+                flow: pmm:install_prod
+
+tasks:
+    robot:
+        options:
+            suites: robot/Geo-Reporting-PMM/tests
+            options:
+                outputdir: robot/Geo-Reporting-PMM/results
+
+    robot_testdoc:
+        options:
+            path: robot/Geo-Reporting-PMM/tests
+            output: robot/Geo-Reporting-PMM/doc/Geo-Reporting-PMM_tests.html
+
+    run_tests:
+        options:
+            required_org_code_coverage_percent: 75
