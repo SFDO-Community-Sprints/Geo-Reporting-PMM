@@ -32,9 +32,6 @@ Peter	White          | Contributor   | [pawhite-gh](https://github.com/pawhite-g
 ### Project Team Accomplishments
 Please replace with the tasks you team was able to accomplish during the Sprint event.
 
-# Past Project Teams
-We recommend creating a Wiki page for past Sprint Event volunteers (per Sprint), and that Sprints goals, accomplishments, etc. Here's a good example: https://github.com/SFDO-Community-Sprints/DataGenerationToolkit. If you prefer to add this information to the readme file, here's a good example of formatting you can use: https://github.com/SFDO-Community-Sprints/Admin-Skills-and-Nonprofit-Salesforce-Teams
-
 ## Sprint (06-10-2021):
 
 ### Project Team Accomplishments
