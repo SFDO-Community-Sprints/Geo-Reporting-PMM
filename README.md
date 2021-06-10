@@ -27,11 +27,6 @@ Jessie	Rymph        | Contributor   | [forthesales](https://github.com/forthesal
 Jon	Sayer            | Contributor   | [jonsayer](https://github.com/jonsayer)                 | 
 Peter	White          | Contributor   | [pawhite-gh](https://github.com/pawhite-gh)             | 
 
-## Sprint (DATE)
-
-### Project Team Accomplishments
-Please replace with the tasks you team was able to accomplish during the Sprint event.
-
 ## Sprint (06-10-2021):
 
 ### Project Team Accomplishments
