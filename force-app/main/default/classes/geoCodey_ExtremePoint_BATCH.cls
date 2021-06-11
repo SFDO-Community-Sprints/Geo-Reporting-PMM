@@ -19,12 +19,8 @@ global class geoCodey_ExtremePoint_BATCH  implements Database.Batchable<sObject>
     
     global void execute(SchedulableContext sc)
     {
-        // Implement any logic to be scheduled
-       
-        // We now call the batch class to be scheduled
         geoCodey_ExtremePoint_BATCH b = new geoCodey_ExtremePoint_BATCH();
        
-        //Parameters of ExecuteBatch(context,BatchSize)
         database.executebatch(b,1);
     }
     
