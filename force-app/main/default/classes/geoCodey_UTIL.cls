@@ -1,11 +1,120 @@
 // Written by Jon Sayer, jon@datageekslab.com, as part of June 2021 Community Sprint
-
-// This utility class contains functionality to determine if a point is within a polygon, used for geolocation
-
-// This is mainly a port of this javascript code into Apex: https://www.geeksforgeeks.org/how-to-check-if-a-given-point-lies-inside-a-polygon/
+// This utility class contains functionality to determine if a point is within a polygon, used for geolocation.
+// Can also match the same to Geographic_Defination__c records
 
 public class geoCodey_UTIL {
     
+    // This method returns the Id of a Geo Definition record that the provided point is within. 
+    public static Id getTheGeoDef(Decimal latitude,Decimal longitude){
+        List<Geographic_Defination__c> defs = [
+            SELECT 	id,
+            		Name,
+            		Geographic_ID__c,
+            		Internal_Point__c,
+            		Land_Area__c,
+            		Latitude_Northern_Most__c,
+            		Latitude_Southern_Most__c,
+            		Longitude_Eastern_Most__c,
+            		Longitude_Western_Most__c,
+            		Parent_Geography_Definition__c,
+            		Polygon__c,
+            		Secondary_Name__c,
+            		Type__c,
+            		Water_Area__c
+            FROM 	Geographic_Defination__c
+            WHERE 	Latitude_Northern_Most__c >= :latitude
+             AND	Latitude_Southern_Most__c <= :latitude
+             AND	Longitude_Eastern_Most__c >= :longitude
+             AND	Longitude_Western_Most__c <= :longitude
+        ];
+        
+        system.debug( 'found units:' + defs.size() );
+        
+        if(defs.size() == 0){
+            return null;
+        } else {
+            for(Geographic_Defination__c def : defs){
+                Id returned = geoDefIndivMatch(def,latitude,longitude);
+                if(returned != null){
+                    return returned;
+                }
+            }
+            // if we get here, we've looped through the whole list and nothing was found. 
+            return null;
+        }
+    }
+    
+    // this method returns the def id if the lat/long is inside the region
+    // else returns null
+    public static Id geoDefIndivMatch(Geographic_Defination__c def, Decimal latitude,Decimal longitude){
+        List<Point> polygon = parsePolygon(def.Polygon__c);
+        Boolean inside = isInside(polygon, makePoint( longitude,latitude ));
+        if(inside){
+            return def.id;
+        } else {
+            return null;
+        }
+    }
+    
+    // Sets the extreme points on a provided list of Geo defs, such as from a trigger
+    public static void populateExtremePoints(List<Geographic_Defination__c> defs){
+        List<Geographic_Defination__c> updateDefs = new List<Geographic_Defination__c>();
+        for(Geographic_Defination__c def : defs){
+            // generate a list of points as string pairs
+            List<String> pairStrings = def.Polygon__c.replace('MULTIPOLYGON ', '').replace('POLYGON ', '').replace('(', '').replace(')', '').split(',');
+            
+            // generate point variables at their opposite extreme
+            Decimal N = -90;
+            Decimal S = 90;
+            Decimal E = -180;
+            Decimal W = 180;
+            
+            for(String pair : pairStrings){
+                List<String> latLong = pair.split(' ');
+                system.debug('Pair: ' + pair);
+                system.debug('Split: ' + latLong[0] + ', ' + latLong[1]);
+                if(N < Decimal.valueOf(latLong[1])){
+                    N = Decimal.valueOf(latLong[1]);
+                }
+                if(S > Decimal.valueOf(latLong[1])){
+                    S = Decimal.valueOf(latLong[1]);
+                }
+                if(E < Decimal.valueOf(latLong[0])){
+                    E = Decimal.valueOf(latLong[0]);
+                }
+                if(W > Decimal.valueOf(latLong[0])){
+                    W = Decimal.valueOf(latLong[0]);
+                }
+            }
+            // to do, add a step here to make sure that if there is no change to the values on the existing record, to just not update that record
+            def.Latitude_Northern_Most__c = N;
+            def.Latitude_Southern_Most__c = S;
+            def.Longitude_Eastern_Most__c = E;
+            def.Longitude_Western_Most__c = W;
+            updateDefs.add(def);
+        }
+        if(updateDefs.size() > 0){
+            update updateDefs;
+        }
+    }
+    
+    // Takes in WKT formatted shape string and outputs a List of Points
+    // https://en.wikipedia.org/wiki/Well-known_text_representation_of_geometry
+    public static List<Point> parsePolygon(String polygon){
+        List<Point> points = new List<Point>();
+        
+        List<String> pairStrings = polygon.replace('MULTIPOLYGON ', '').replace('POLYGON ', '').replace('(', '').replace(')', '').split(',');
+        for(String pair : pairStrings){
+            List<String> latLong = pair.split(' ');
+            points.add( makePoint(Decimal.valueOf(latLong[0]),Decimal.valueOf(latLong[1]) ) );
+        }
+        
+        return points;
+    }
+    
+    
+    /******** Below this line, this is mainly a port of this javascript code into Apex: https://www.geeksforgeeks.org/how-to-check-if-a-given-point-lies-inside-a-polygon/  ****/
+
     public class Point{
         public Decimal x;
         public Decimal y;
@@ -131,5 +240,7 @@ public class geoCodey_UTIL {
         // Return true if count is odd, false if even
         return (Math.mod(count,2) == 1); 
     }
+    
+    /******** End borrowed code  ****/
     
 }
