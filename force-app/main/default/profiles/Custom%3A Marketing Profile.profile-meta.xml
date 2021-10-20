@@ -3,6 +3,11 @@
     <custom>true</custom>
     <fieldPermissions>
         <editable>true</editable>
+        <field>Geographic_Definition__c.Geographic_Definition__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
         <field>Geographic_Definition__c.Internal_Point__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -12,7 +17,6 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>true</editable>
         <field>Geographic_Definition__c.Latitude_Northern_Most__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -57,7 +61,7 @@
         <readable>true</readable>
     </fieldPermissions>
     <layoutAssignments>
-        <layout>Geographic_Definition__c-Geography Definition Layout</layout>
+        <layout>Geographic_Definition__c-Geographic Definition Layout</layout>
     </layoutAssignments>
     <userLicense>Salesforce</userLicense>
     <userPermissions>
