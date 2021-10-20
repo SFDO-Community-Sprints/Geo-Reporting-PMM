@@ -1,0 +1,15 @@
+As of Sep 2021:
+
+The Apex which is part of this package contains two classes with two key functions. 
+
+*geoCodey_UTIL method: populateExtremePoints and class geoCodey_ExtremePoint_BATCH*
+The purpose of these two is to calculate the extreme points of a given polygon and save those values to fields on the Geographic Definition record. 
+This essentially serves as a cache of these variables so these records can be pulled up via SOQL by getTheGeoDef.
+
+The idea is that an admin would import their records and run the geoCodey_ExtremePoint_BATCH, which will calculate the extreme points asyncronously. 
+
+
+*geoCodey_UTIL methods: getTheGeoDef and geoDefIndivMatch*
+These methods do the actual meat of this work. getTheGeoDef takes a latitude and longitude (how you get that is flexible!), looks for Geographic Definitions near the 
+point (based on their cached extreme points) and then loops through those definitions to verify which definition they are within. It then returns the Id of the defnition
+that the point lies within. 
