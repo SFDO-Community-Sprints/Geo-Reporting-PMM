@@ -7,7 +7,7 @@ public class geoCodey_TEST {
     
     @isTest static void testExtremeBatch(){
         // create test data
-        Geographic_Definition__c colorado = new Geographic_Defination__c(
+        Geographic_Definition__c colorado = new Geographic_Definition__c(
         	Name = 'Colorado',
             Polygon__c = 'MULTIPOLYGON (((-109.000 41.000,-102.000 41.000,-102.000 37.000,-109.000 37.000)))',
             Geographic_Id__c = 'CO'
@@ -23,12 +23,12 @@ public class geoCodey_TEST {
         
         test.stopTest();
         
-        Geographic_Defination__c result = [SELECT 	id, 
+        Geographic_Definition__c result = [SELECT 	id, 
                                            			Latitude_Northern_Most__c,
                                            			Latitude_Southern_Most__c,
             										Longitude_Eastern_Most__c,
                                            			Longitude_Western_Most__c
-                                          FROM		Geographic_Defination__c
+                                          FROM		Geographic_Definition__c
                                           WHERE		id = :colorado.Id];
         
         system.assertEquals(41, result.Latitude_Northern_Most__c);
@@ -39,7 +39,7 @@ public class geoCodey_TEST {
     
     @isTest static void testPointMatch(){
         // create test data
-        Geographic_Defination__c colorado = new Geographic_Defination__c(
+        Geographic_Definition__c colorado = new Geographic_Definition__c(
         	Name = 'Colorado',
             Polygon__c = 'MULTIPOLYGON (((-109.000 41.000,-102.000 41.000,-102.000 37.000,-109.000 37.000)))',
             Latitude_Northern_Most__c = 41.00,
@@ -51,7 +51,7 @@ public class geoCodey_TEST {
         insert colorado;
         
         // create test data
-        Geographic_Defination__c wyoming = new Geographic_Defination__c(
+        Geographic_Definition__c wyoming = new Geographic_Definition__c(
         	Name = 'wyoming',
             Polygon__c = 'MULTIPOLYGON (((-104.000 41.000,-111.000 41.000,-111.000 45.000,-104.000 45.000)))',
             Latitude_Northern_Most__c = 45.00,
