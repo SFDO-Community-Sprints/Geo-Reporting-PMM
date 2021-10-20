@@ -1,5 +1,4 @@
-# Project Name
-Geographic Reporting enhancements for PMM and NPSP
+# Geographic Reporting enhancements for PMM and NPSP
 
 # Project Overview
 ## Vision & Goals
