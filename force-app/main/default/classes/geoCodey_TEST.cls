@@ -7,7 +7,7 @@ public class geoCodey_TEST {
     
     @isTest static void testExtremeBatch(){
         // create test data
-        Geographic_Defination__c colorado = new Geographic_Defination__c(
+        Geographic_Definition__c colorado = new Geographic_Defination__c(
         	Name = 'Colorado',
             Polygon__c = 'MULTIPOLYGON (((-109.000 41.000,-102.000 41.000,-102.000 37.000,-109.000 37.000)))',
             Geographic_Id__c = 'CO'

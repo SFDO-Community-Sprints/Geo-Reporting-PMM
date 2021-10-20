@@ -3,61 +3,61 @@
     <custom>true</custom>
     <fieldPermissions>
         <editable>true</editable>
-        <field>Geographic_Defination__c.Internal_Point__c</field>
+        <field>Geographic_Definition__c.Internal_Point__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
-        <field>Geographic_Defination__c.Land_Area__c</field>
+        <field>Geographic_Definition__c.Land_Area__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
-        <field>Geographic_Defination__c.Latitude_Northern_Most__c</field>
+        <field>Geographic_Definition__c.Latitude_Northern_Most__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
-        <field>Geographic_Defination__c.Latitude_Southern_Most__c</field>
+        <field>Geographic_Definition__c.Latitude_Southern_Most__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
-        <field>Geographic_Defination__c.Longitude_Eastern_Most__c</field>
+        <field>Geographic_Definition__c.Longitude_Eastern_Most__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
-        <field>Geographic_Defination__c.Longitude_Western_Most__c</field>
+        <field>Geographic_Definition__c.Longitude_Western_Most__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
-        <field>Geographic_Defination__c.Parent_Geography_Definition__c</field>
+        <field>Geographic_Definition__c.Parent_Geography_Definition__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
-        <field>Geographic_Defination__c.Polygon__c</field>
+        <field>Geographic_Definition__c.Polygon__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
-        <field>Geographic_Defination__c.Secondary_Name__c</field>
+        <field>Geographic_Definition__c.Secondary_Name__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
-        <field>Geographic_Defination__c.Type__c</field>
+        <field>Geographic_Definition__c.Type__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
-        <field>Geographic_Defination__c.Water_Area__c</field>
+        <field>Geographic_Definition__c.Water_Area__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <layoutAssignments>
-        <layout>Geographic_Defination__c-Geography Definition Layout</layout>
+        <layout>Geographic_Definition__c-Geography Definition Layout</layout>
     </layoutAssignments>
     <userLicense>Salesforce</userLicense>
     <userPermissions>

@@ -155,7 +155,7 @@
     <externalSharingModel>Private</externalSharingModel>
     <label>Geography Definition</label>
     <nameField>
-        <label>Geographic Defination Name</label>
+        <label>Geographic Definition Name</label>
         <type>Text</type>
     </nameField>
     <pluralLabel>Geography Definitions</pluralLabel>

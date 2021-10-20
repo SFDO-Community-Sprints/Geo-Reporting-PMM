@@ -10,7 +10,7 @@
     </classAccesses>
     <custom>false</custom>
     <tabVisibilities>
-        <tab>Geographic_Defination__c</tab>
+        <tab>Geographic_Definition__c</tab>
         <visibility>DefaultOn</visibility>
     </tabVisibilities>
     <userLicense>Salesforce</userLicense>
