@@ -1,5 +1,4 @@
-# Project Name
-Geographic Reporting enhancements for PMM and NPSP
+# Geographic Reporting enhancements for PMM and NPSP
 
 # Project Overview
 ## Vision & Goals
@@ -15,23 +14,26 @@ Non-profit, Education, other use-cases as well.
 
 ## Hub Group Link
 
-# Current Project Team & Accomplishments
+# Project Team
+
+## Sprint (10-20-2021):
+
+### Project Team Accomplishments
+- Created Demo video. 
+- Cleaned up github!
 
 Full Name            | Team Role     | Github Username                                         | 
 ------------         | ------------- | -------------                                           |
 Justin Gilmore       | Group Leader  | [justinsgilmore](https://github.com/justinsgilmore)     | 
-Mike Kikta           | Contributor   | [mkikta-traction](https:/github.com/mkikta-traction)    |
-Tina Brint           | Contributor   | [jade888](https:/github.com/jade888)                    | 
-Claudio	Moraes       | Contributor   | [crmoraes](https://github.com/crmoraes)                 |
-Meera	Nilekani       | Contributor   | [radmeera](https://github.com/radmeera)                 |
-Jessie	Rymph        | Contributor   | [forthesales](https://github.com/forthesales)           |
 Jon	Sayer            | Contributor   | [jonsayer](https://github.com/jonsayer)                 | 
-Peter	White          | Contributor   | [pawhite-gh](https://github.com/pawhite-gh)             | 
+Meg Gray             | Contributor   | [meggraySFDO](https://github.com/meggraySFDO)           | 
 
 ## Sprint (06-09-2021):
 
 ### Project Team Accomplishments
-Please replace with the tasks you team was able to accomplish during the Sprint event.
+- Created Geographic Definition object
+- Wrote Apex for consuming a latitude and longitude and returning the Geographic Definition that point is within
+- Wrote Apex for processing Geographic Definition records for use. 
 
 Full Name            | Team Role     | Github Username                                         | 
 ------------         | ------------- | -------------                                           |
@@ -47,5 +49,7 @@ Peter	White          | Contributor   | [pawhite-gh](https://github.com/pawhite-g
 # Project Resources and Documentation
 Documentation can be found in the repository [wiki](https://github.com/SFDO-Community-Sprints/Geo-Reporting-PMM/wiki)
 
-# Future Contributions (AKA what were you unable to finish at the Sprint)
-Replace with the goals your team would like to continue working on next time.
+# Future Contributions 
+- Flow for identifying Geographic Definitions that do not use shape data but are definied in a hierarchy
+- Adding new fields to Geographic Definitions for hierarchical definition
+- Setup documentation
