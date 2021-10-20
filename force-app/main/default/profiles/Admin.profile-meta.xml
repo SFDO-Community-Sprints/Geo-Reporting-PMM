@@ -56,7 +56,6 @@
         <apexClass>geoCodey_UTIL</apexClass>
         <enabled>true</enabled>
     </classAccesses>
-    <custom>false</custom>
     <tabVisibilities>
         <tab>Geographic_Definition__c</tab>
         <visibility>DefaultOn</visibility>
