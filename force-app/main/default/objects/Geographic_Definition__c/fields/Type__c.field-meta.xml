@@ -32,16 +32,6 @@
                 <label>State Legislative District (Lower Chamber)</label>
             </value>
             <value>
-                <fullName>County</fullName>
-                <default>false</default>
-                <label>County</label>
-            </value>
-            <value>
-                <fullName>County Subdivision</fullName>
-                <default>false</default>
-                <label>County Subdivision</label>
-            </value>
-            <value>
                 <fullName>Place</fullName>
                 <default>false</default>
                 <label>Place</label>
@@ -60,6 +50,16 @@
                 <fullName>Census Block Group</fullName>
                 <default>false</default>
                 <label>Census Block Group</label>
+            </value>
+            <value>
+                <fullName>County</fullName>
+                <default>false</default>
+                <label>County</label>
+            </value>
+            <value>
+                <fullName>County Subdivision</fullName>
+                <default>false</default>
+                <label>County Subdivision</label>
             </value>
             <value>
                 <fullName>Census Block</fullName>

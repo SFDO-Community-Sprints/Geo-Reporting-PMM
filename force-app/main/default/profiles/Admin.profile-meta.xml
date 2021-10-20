@@ -48,6 +48,19 @@
         <enabled>true</enabled>
         <name>AIViewInsightObjects</name>
     </userPermissions>
+    <classAccesses>
+        <apexClass>geoCodey_ExtremePoint_BATCH</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>geoCodey_UTIL</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <custom>false</custom>
+    <tabVisibilities>
+        <tab>Geographic_Definition__c</tab>
+        <visibility>DefaultOn</visibility>
+    </tabVisibilities>
     <userPermissions>
         <enabled>true</enabled>
         <name>ActivateContract</name>
@@ -370,7 +383,7 @@
     </userPermissions>
     <userPermissions>
         <enabled>true</enabled>
-        <name>ManageContentPermissions</name>
+        <name>ManageClearbitIntegration</name>
     </userPermissions>
     <userPermissions>
         <enabled>true</enabled>
@@ -531,6 +544,10 @@
     <userPermissions>
         <enabled>true</enabled>
         <name>ManageUsers</name>
+    </userPermissions>
+    <userPermissions>
+        <enabled>true</enabled>
+        <name>ManageZapierIntegration</name>
     </userPermissions>
     <userPermissions>
         <enabled>true</enabled>

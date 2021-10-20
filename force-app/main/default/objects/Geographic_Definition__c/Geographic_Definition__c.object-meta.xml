@@ -160,6 +160,7 @@
         <type>Text</type>
     </nameField>
     <pluralLabel>Geographic Definitions</pluralLabel>
+
     <searchLayouts/>
     <sharingModel>ReadWrite</sharingModel>
     <visibility>Public</visibility>
