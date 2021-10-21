@@ -4,7 +4,7 @@
     <deleteConstraint>SetNull</deleteConstraint>
     <externalId>false</externalId>
     <label>Parent Geography</label>
-    <referenceTo>Geographic_Defination__c</referenceTo>
+    <referenceTo>Geographic_Definition__c</referenceTo>
     <relationshipLabel>Geography Definitions</relationshipLabel>
     <relationshipName>Geography_Definitions</relationshipName>
     <required>false</required>

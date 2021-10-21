@@ -6,6 +6,7 @@
     <label>Geographic ID</label>
     <length>50</length>
     <required>true</required>
+    <trackHistory>false</trackHistory>
     <trackTrending>false</trackTrending>
     <type>Text</type>
     <unique>true</unique>

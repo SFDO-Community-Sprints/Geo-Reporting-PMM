@@ -1,12 +1,12 @@
 // Written by Jon Sayer, jon@datageekslab.com, as part of June 2021 Community Sprint
 // This utility class contains functionality to determine if a point is within a polygon, used for geolocation.
-// Can also match the same to Geographic_Defination__c records
+// Can also match the same to Geographic_Definition__c records
 
 public class geoCodey_UTIL {
     
     // This method returns the Id of a Geo Definition record that the provided point is within. 
     public static Id getTheGeoDef(Decimal latitude,Decimal longitude){
-        List<Geographic_Defination__c> defs = [
+        List<Geographic_Definition__c> defs = [
             SELECT 	id,
             		Name,
             		Geographic_ID__c,
@@ -21,7 +21,7 @@ public class geoCodey_UTIL {
             		Secondary_Name__c,
             		Type__c,
             		Water_Area__c
-            FROM 	Geographic_Defination__c
+            FROM 	Geographic_Definition__c
             WHERE 	Latitude_Northern_Most__c >= :latitude
              AND	Latitude_Southern_Most__c <= :latitude
              AND	Longitude_Eastern_Most__c >= :longitude
@@ -33,7 +33,7 @@ public class geoCodey_UTIL {
         if(defs.size() == 0){
             return null;
         } else {
-            for(Geographic_Defination__c def : defs){
+            for(Geographic_Definition__c def : defs){
                 Id returned = geoDefIndivMatch(def,latitude,longitude);
                 if(returned != null){
                     return returned;
@@ -46,7 +46,7 @@ public class geoCodey_UTIL {
     
     // this method returns the def id if the lat/long is inside the region
     // else returns null
-    public static Id geoDefIndivMatch(Geographic_Defination__c def, Decimal latitude,Decimal longitude){
+    public static Id geoDefIndivMatch(Geographic_Definition__c def, Decimal latitude,Decimal longitude){
         List<Point> polygon = parsePolygon(def.Polygon__c);
         Boolean inside = isInside(polygon, makePoint( longitude,latitude ));
         if(inside){
@@ -57,9 +57,9 @@ public class geoCodey_UTIL {
     }
     
     // Sets the extreme points on a provided list of Geo defs, such as from a trigger
-    public static void populateExtremePoints(List<Geographic_Defination__c> defs){
-        List<Geographic_Defination__c> updateDefs = new List<Geographic_Defination__c>();
-        for(Geographic_Defination__c def : defs){
+    public static void populateExtremePoints(List<Geographic_Definition__c> defs){
+        List<Geographic_Definition__c> updateDefs = new List<Geographic_Definition__c>();
+        for(Geographic_Definition__c def : defs){
             // generate a list of points as string pairs
             List<String> pairStrings = def.Polygon__c.replace('MULTIPOLYGON ', '').replace('POLYGON ', '').replace('(', '').replace(')', '').split(',');
             
