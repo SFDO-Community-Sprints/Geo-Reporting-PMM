@@ -1,3 +1,19 @@
+October Sprint task progress (as of 10/21/2021)
+- Lookup from service delivery and program engagement - Done
+- Autoset record name on create - Done
+- Autoset geographic entity on Contact - dependent on next task
+
+- flow for finding your geodef - *in progress*
+	- zip code would have first 5 - configured in send
+	- Service record would have default geographic def
+		- error path, no info on person
+			- unknown location - DONE
+		- have info, but no match record
+			- do this - DONE
+
+
+
+
 As of Sep 2021:
 
 The Apex which is part of this package contains two classes with two key functions. 
