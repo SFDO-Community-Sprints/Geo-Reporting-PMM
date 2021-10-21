@@ -5,9 +5,10 @@
     <externalId>false</externalId>
     <label>Parent Geography</label>
     <referenceTo>Geographic_Definition__c</referenceTo>
-    <relationshipLabel>Geography Definitions</relationshipLabel>
-    <relationshipName>Geography_Definitions</relationshipName>
+    <relationshipLabel>Child Geography Definitions</relationshipLabel>
+    <relationshipName>Child_Geography_Definitions</relationshipName>
     <required>false</required>
+    <trackHistory>false</trackHistory>
     <trackTrending>false</trackTrending>
     <type>Lookup</type>
 </CustomField>

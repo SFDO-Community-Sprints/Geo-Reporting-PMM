@@ -5,7 +5,7 @@
     <externalId>true</externalId>
     <label>Geographic ID</label>
     <length>50</length>
-    <required>true</required>
+    <required>false</required>
     <trackHistory>false</trackHistory>
     <trackTrending>false</trackTrending>
     <type>Text</type>

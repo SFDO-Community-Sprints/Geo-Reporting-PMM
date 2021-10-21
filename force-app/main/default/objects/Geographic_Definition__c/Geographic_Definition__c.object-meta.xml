@@ -155,13 +155,12 @@
     <externalSharingModel>Private</externalSharingModel>
     <label>Geographic Definition</label>
     <nameField>
-        <label>Geographic Definition Name</label>
+        <label>Full Geographic Definition Name</label>
         <trackHistory>false</trackHistory>
         <type>Text</type>
     </nameField>
     <pluralLabel>Geographic Definitions</pluralLabel>
-
-    <searchLayouts/>
+    <searchLayouts></searchLayouts>
     <sharingModel>ReadWrite</sharingModel>
     <visibility>Public</visibility>
 </CustomObject>

@@ -4,6 +4,7 @@
     <externalId>false</externalId>
     <label>Polygon</label>
     <length>131072</length>
+    <trackHistory>false</trackHistory>
     <trackTrending>false</trackTrending>
     <type>LongTextArea</type>
     <visibleLines>3</visibleLines>

@@ -11,16 +11,13 @@ public class geoCodey_UTIL {
             		Name,
             		Geographic_ID__c,
             		Internal_Point__c,
-            		Land_Area__c,
             		Latitude_Northern_Most__c,
             		Latitude_Southern_Most__c,
             		Longitude_Eastern_Most__c,
             		Longitude_Western_Most__c,
             		Parent_Geography_Definition__c,
             		Polygon__c,
-            		Secondary_Name__c,
-            		Type__c,
-            		Water_Area__c
+            		Type__c
             FROM 	Geographic_Definition__c
             WHERE 	Latitude_Northern_Most__c >= :latitude
              AND	Latitude_Southern_Most__c <= :latitude
