@@ -1,9 +1,116 @@
 // Written by Jon Sayer, jon@datageekslab.com, as part of June 2021 Community Sprint
+// Amended in Oct 2021 Sprint
+// 
 // This utility class contains functionality to determine if a point is within a polygon, used for geolocation.
 // Can also match the same to Geographic_Definition__c records
+// 
+// Contains functionality to match to Geographic_Definition__c where matching occurs by definition lookup name and not polygon, such as by zip/county matching.
+// 
+// TODO: 
+// 		- Test class for lookup queries. 
+// 		- manual testing
 
 public class geoCodey_UTIL {
     
+    // ********************** BEGIN: Search by Lookup Name and Type ***************************************
+    
+    // This method generically finds GeoDefs based on their Lookup name and Type, and optionally the lookup name and type of their parent records
+    public static Id getDefFromAddressItems(String lookup,String lookupType,String parentLookup,String parentLookupType){
+        String parentQuery;
+        List<Geographic_Definition__c> defs = new List<Geographic_Definition__c>();
+        Id returnId;
+        if(parentLookup == null && parentLookupType == null){
+            defs = getDefsOneValuePair(lookup,lookupType);
+        } else {
+            parentQuery = '%'+parentLookup+'---'+parentLookupType+'%';
+            defs = getDefsOneValuePairWithParentString(lookup,lookupType,parentQuery);
+        }
+        if(defs.size() == 1){
+            return defs[0].Id;
+        } else {
+            // query for the unknown type
+            List<Geographic_Definition__c> unknownDefs = new List<Geographic_Definition__c>();
+            if(parentLookup == null && parentLookupType == null){
+                unknownDefs = [
+                    SELECT 	id,
+                            Name,
+                            Type__c,
+                            Lookup_Name__c,
+                            Parent_Lookup_Chain__c
+                    FROM	Geographic_Definition__c
+                    WHERE	Type__c = 'Unknown'
+                     AND	Lookup_Name__c = 'Unknown'
+                     AND	Parent_Geography_Definition__c = null
+                ];
+            } else {
+                unknownDefs = [
+                    SELECT 	id,
+                            Name,
+                            Type__c,
+                            Lookup_Name__c,
+                            Parent_Lookup_Chain__c
+                    FROM	Geographic_Definition__c
+                    WHERE	Type__c = 'Unknown'
+                     AND	Lookup_Name__c = 'Unknown'
+                     AND	Parent_Geography_Definition__r.Lookup_Name__c 	= :parentLookup
+                     AND	Parent_Geography_Definition__r.Type__c 			= :parentLookupType
+                ];
+            }
+            if(unknownDefs.size() > 0){
+                return unknownDefs[0].Id;
+            } else {
+                return generateUnknownDef(parentLookup,parentLookupType);
+            }
+        }
+    }
+    
+    // Utility Method for generating an "unknown" geodef record
+    public static id generateUnknownDef(String parentLookup,String parentLookupType){
+        Geographic_Definition__c unknown = new Geographic_Definition__c(
+            Name = 'Unknown',
+            Lookup_Name__c = 'Unknown',
+            Type__c = 'Unknown'
+        );
+        List<Geographic_Definition__c> parentId = getDefsOneValuePair(parentLookup,parentLookupType);
+        if(parentId.size() > 0){
+            unknown.Parent_Geography_Definition__c = parentId[0].Id;
+        }
+        insert unknown;
+        return unknown.Id;
+    }
+    
+    // Utility Method for searching by a single lookup name and type
+    // Used in getDefFromAddressItems
+    public static List<Geographic_Definition__c> getDefsOneValuePair(String lookup,String lookupType){
+        return [
+                SELECT 	id,
+                        Name,
+                        Type__c,
+                        Lookup_Name__c
+                FROM	Geographic_Definition__c
+                WHERE	Type__c = :lookupType
+                 AND	Lookup_Name__c = :lookup
+            	];	
+    }
+
+    // Utility Method for searching by a single lookup name and type, and the parent's name and type
+    // Used in getDefFromAddressItems
+	public static List<Geographic_Definition__c> getDefsOneValuePairWithParentString(String lookup,String lookupType,String parentQuery){
+        return [
+                SELECT 	id,
+                        Name,
+                        Type__c,
+                        Lookup_Name__c,
+                		Parent_Lookup_Chain__c
+                FROM	Geographic_Definition__c
+                WHERE	Type__c = :lookupType
+                 AND	Lookup_Name__c = :lookup
+                 AND	Parent_Lookup_Chain__c LIKE :parentQuery
+            ];
+    }
+    
+    // ********************** BEGIN: Search by Lat/Long and Polygon ***************************************
+	
     // This method returns the Id of a Geo Definition record that the provided point is within. 
     public static Id getTheGeoDef(Decimal latitude,Decimal longitude){
         List<Geographic_Definition__c> defs = [

@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>53.0</apiVersion>
+    <description>Updates the Name of a Geographic Definition when it is edited.</description>
+    <formulas>
+        <name>newName</name>
+        <dataType>String</dataType>
+        <expression>IF( 
+	CONTAINS({!$Record.Lookup_Name__c},&quot;,&quot;),
+	LEFT({!$Record.Lookup_Name__c}, (FIND(&quot;,&quot;,{!$Record.Lookup_Name__c})-1)) , 
+	{!$Record.Lookup_Name__c} 
+) &amp; 
+IF( 
+	ISBLANK( {!$Record.Parent_Geography_Definition__c} ), 
+	&quot; &quot;   ,
+	&quot; ( &quot;  &amp; IF( 
+				CONTAINS({!$Record.Parent_Geography_Definition__r.Lookup_Name__c},&quot;,&quot;), 
+				LEFT({!$Record.Parent_Geography_Definition__r.Lookup_Name__c}, (FIND(&quot;,&quot;,{!$Record.Parent_Geography_Definition__r.Lookup_Name__c})-1)) , {!$Record.Parent_Geography_Definition__r.Lookup_Name__c} 
+			) 
+	&amp;  &quot; )&quot; 
+)</expression>
+    </formulas>
+    <interviewLabel>Geographic Definition: Update Name {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>Geographic Definition: Update Name</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>FREE_FORM_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <recordUpdates>
+        <name>Set_name_from_formula</name>
+        <label>Set name from formula</label>
+        <locationX>176</locationX>
+        <locationY>327</locationY>
+        <inputAssignments>
+            <field>Name</field>
+            <value>
+                <elementReference>newName</elementReference>
+            </value>
+        </inputAssignments>
+        <inputReference>$Record</inputReference>
+    </recordUpdates>
+    <start>
+        <locationX>50</locationX>
+        <locationY>50</locationY>
+        <connector>
+            <targetReference>Set_name_from_formula</targetReference>
+        </connector>
+        <object>Geographic_Definition__c</object>
+        <recordTriggerType>CreateAndUpdate</recordTriggerType>
+        <triggerType>RecordBeforeSave</triggerType>
+    </start>
+    <status>Active</status>
+</Flow>
