@@ -1,45 +1,171 @@
-Insert Accounts:
+Insert Account:
   sf_object: Account
-  table: Account
   fields:
-    Name: Name
-    Description: Description
-    BillingStreet: BillingStreet
-    BillingCity: BillingCity
-    BillingState: BillingState
-    BillingPostalCode: BillingPostalCode
-    BillingCountry: BillingCountry
-    ShippingStreet: ShippingStreet
-    ShippingCity: ShippingCity
-    ShippingState: ShippingState
-    ShippingPostalCode: ShippingPostalCode
-    ShippingCountry: ShippingCountry
-    Phone: Phone
-    Fax: Fax
-    Website: Website
-    NumberOfEmployees: NumberOfEmployees
-    AccountNumber: AccountNumber
-    Site: Site
-    Type: Type
-Insert Contacts:
+  - Name
+  lookups:
+    ParentId:
+      table: Account
+      after: Insert Account
+Insert Geographic_Definition__c:
+  sf_object: Geographic_Definition__c
+  fields:
+  - Geographic_ID__c
+  - Land_Area__c
+  - Latitude_Northern_Most__c
+  - Latitude_Southern_Most__c
+  - Longitude_Eastern_Most__c
+  - Longitude_Western_Most__c
+  - Lookup_Name__c
+  - Name
+  - Polygon__c
+  - Secondary_Name__c
+  - Type__c
+  - Water_Area__c
+  lookups:
+    Parent_Geography_Definition__c:
+      table: Geographic_Definition__c
+      after: Insert Geographic_Definition__c
+Insert pmdm__Program__c:
+  sf_object: pmdm__Program__c
+  fields:
+  - Name
+  - pmdm__Description__c
+  - pmdm__EndDate__c
+  - pmdm__ProgramIssueArea__c
+  - pmdm__ShortSummary__c
+  - pmdm__StartDate__c
+  - pmdm__Status__c
+  - pmdm__TargetPopulation__c
+Insert Contact:
   sf_object: Contact
-  table: Contact
   fields:
-    Salutation: Salutation
-    FirstName: FirstName
-    LastName: LastName
-    Email: Email
-    Phone: Phone
-    MobilePhone: MobilePhone
-    OtherPhone: OtherPhone
-    HomePhone: HomePhone
-    Title: Title
-    Birthdate: Birthdate
-    MailingStreet: MailingStreet
-    MailingCity: MailingCity
-    MailingState: MailingState
-    MailingPostalCode: MailingPostalCode
-    MailingCountry: MailingCountry
+  - DoNotCall
+  - FirstName
+  - HasOptedOutOfEmail
+  - HasOptedOutOfFax
+  - LastName
+  - pmdm__ConsecutiveAbsences__c
+  - pmdm__IsClient__c
+  - pmdm__LastServiceDate__c
+  - pmdm__NumAbsentServiceDeliveries__c
+  - pmdm__NumPresentServiceDeliveries__c
   lookups:
     AccountId:
       table: Account
+    Contact_Current_Geography__c:
+      table: Geographic_Definition__c
+    ReportsToId:
+      table: Contact
+      after: Insert Contact
+Insert pmdm__ProgramCohort__c:
+  sf_object: pmdm__ProgramCohort__c
+  fields:
+  - Name
+  - pmdm__Description__c
+  - pmdm__EndDate__c
+  - pmdm__StartDate__c
+  - pmdm__Status__c
+  lookups:
+    pmdm__Program__c:
+      table: pmdm__Program__c
+Insert pmdm__Service__c:
+  sf_object: pmdm__Service__c
+  fields:
+  - Name
+  - pmdm__Description__c
+  - pmdm__NumAbsentServiceDeliveries__c
+  - pmdm__NumPresentServiceDeliveries__c
+  - pmdm__ServiceDeliveryFieldSet__c
+  - pmdm__Status__c
+  - pmdm__UnitOfMeasurement__c
+  lookups:
+    pmdm__Program__c:
+      table: pmdm__Program__c
+Insert pmdm__ProgramEngagement__c:
+  sf_object: pmdm__ProgramEngagement__c
+  fields:
+  - Name
+  - pmdm__ApplicationDate__c
+  - pmdm__AutoName_Override__c
+  - pmdm__ConsecutiveAbsences__c
+  - pmdm__EndDate__c
+  - pmdm__LastServiceDate__c
+  - pmdm__NumAbsentServiceDeliveries__c
+  - pmdm__NumPresentServiceDeliveries__c
+  - pmdm__Role__c
+  - pmdm__Stage__c
+  - pmdm__StartDate__c
+  lookups:
+    Geographic_Definition__c:
+      table: Geographic_Definition__c
+    pmdm__Account__c:
+      table: Account
+    pmdm__Contact__c:
+      table: Contact
+    pmdm__ProgramCohort__c:
+      table: pmdm__ProgramCohort__c
+    pmdm__Program__c:
+      table: pmdm__Program__c
+Insert pmdm__ServiceSchedule__c:
+  sf_object: pmdm__ServiceSchedule__c
+  fields:
+  - Name
+  - pmdm__AllDay__c
+  - pmdm__CreateServiceSessionRecords__c
+  - pmdm__DaysOfWeek__c
+  - pmdm__DefaultServiceQuantity__c
+  - pmdm__FirstSessionEnd__c
+  - pmdm__FirstSessionStart__c
+  - pmdm__Frequency__c
+  - pmdm__Interval__c
+  - pmdm__MonthlyRecurrenceOption__c
+  - pmdm__NumberOfServiceSessions__c
+  - pmdm__ParticipantCapacity__c
+  - pmdm__ServiceScheduleEndDate__c
+  - pmdm__ServiceScheduleEnds__c
+  lookups:
+    pmdm__OtherServiceProvider__c:
+      table: Contact
+    pmdm__PrimaryServiceProvider__c:
+      table: Contact
+    pmdm__Service__c:
+      table: pmdm__Service__c
+Insert pmdm__ServiceSession__c:
+  sf_object: pmdm__ServiceSession__c
+  fields:
+  - Name
+  - pmdm__NumAbsentServiceDeliveries__c
+  - pmdm__NumPresentServiceDeliveries__c
+  - pmdm__SessionEnd__c
+  - pmdm__SessionStart__c
+  - pmdm__Status__c
+  lookups:
+    pmdm__OtherServiceProvider__c:
+      table: Contact
+    pmdm__PrimaryServiceProvider__c:
+      table: Contact
+    pmdm__ServiceSchedule__c:
+      table: pmdm__ServiceSchedule__c
+Insert pmdm__ServiceDelivery__c:
+  sf_object: pmdm__ServiceDelivery__c
+  fields:
+  - Name
+  - pmdm__AttendanceStatus__c
+  - pmdm__AutonameOverride__c
+  - pmdm__DeliveryDate__c
+  - pmdm__Quantity__c
+  lookups:
+    Geographic_Definition__c:
+      table: Geographic_Definition__c
+    pmdm__Account__c:
+      table: Account
+    pmdm__Contact__c:
+      table: Contact
+    pmdm__ProgramEngagement__c:
+      table: pmdm__ProgramEngagement__c
+    pmdm__ServiceSession__c:
+      table: pmdm__ServiceSession__c
+    pmdm__Service_Provider__c:
+      table: Contact
+    pmdm__Service__c:
+      table: pmdm__Service__c
